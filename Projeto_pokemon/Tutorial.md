@@ -5,23 +5,32 @@
 
 ***Tabelas selecionadas:***
 
--Name;
--Type 1;
--HP;
--Attack;
--Defense;  
--Speed.
+* Name;
 
-*Script para tratar os dados no Jupyter:
+* Type 1;
 
-*Exclusão de tabelas e Tratamento dos dados:
+* HP;
+
+* Attack;
+
+* Defense;  
+
+* Speed.
+
+**Script para tratar os dados no Jupyter:**
+
+***Exclusão de tabelas e Tratamento dos dados:***
+
 #Importa o pandas:
+
 import pandas as pd
 
 #Importa os dados do kaggle, baixados na máquina e envia para o arquivo do jupyter:
+
 dados = pd.read_csv('Pokemon.csv', index_col=0)
 
 #Para ter acesso aos dados:
+
 dados.info
 
 #Excluir as tabelas que não iremos utilizar:
@@ -41,13 +50,14 @@ dados.drop('Generation', axis = 1, inplace=True)
 dados.drop('Legendary', axis = 1, inplace=True)
 
 #Para verificar se as alterações foram realizadas:
+
 dados.info
 
 #Para salvar as alterações feitas da exclusão das tabelas:
 
 dados.to_csv('Pokemon_alterados.csv')
 
-*Tratamento dos dados:
+***Tratamento dos dados:***
 
 #Biblioteca do pandas:
 
