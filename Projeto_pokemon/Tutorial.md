@@ -2,7 +2,8 @@
 
 >Link do dataset: https://www.kaggle.com/datasets/abcsds/pokemon/code
 >Tratar os dados utilizando o Jupyter e o phyton:
->Tabelas selecionadas:
+
+***Tabelas selecionadas:***
 
 -Name;
 -Type 1;
