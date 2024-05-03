@@ -83,5 +83,22 @@ dados.isna().any()
 
 dados.to_csv('Pokemon_alterados2.csv')
 
+#Analisando a tabela, identificamos que existem 2 pokemons com alguns símbolos, que são fáceis de alterar para texto. É só substituir por "Male" e "Female".
+
+#Comando para observar nas linhas:
+dados.loc[[34, 37]]
+
+#Comando para renomear:
+new_dados = pd.DataFrame({'Name': ['Nidoran female', 'Nidoran male']}, index=[34, 37])
+
+#Salvar alterações nos dados:
+dados.update(new_dados)
+
+#Para verificar as tabelas:
+dados.info
+
+#Para salvar essa nova tabela:
+dados.to_csv('Pokemon_alterados2.csv')
+
 
 
