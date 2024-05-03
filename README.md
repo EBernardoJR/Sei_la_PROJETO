@@ -23,9 +23,10 @@ Observação: Sei lá é apenas o nome do grupo.
 
 ![Dados para p modelo logico](https://github.com/Alessandro-Mathews/Sei_la_PROJETO/assets/152512103/c5720744-34a0-4625-9c87-b80c131f388c)
 
+
 ***Modelo lógico:***
 
 ![modelo-lógico](https://github.com/juansf04/Sei_la_PROJETO/assets/165486212/d8f40c29-1d0d-4aa4-b19b-884b97f47d7d)
 
   
-    
+=======
