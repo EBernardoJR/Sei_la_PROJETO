@@ -29,13 +29,13 @@ MongoDB - Breve resumo da tecnologia que iremos utlizar:
 
 ***
 
-***Modelo lógico***
+# ***Modelo lógico***
 
 O modelo lógico pode ser encontrado na pasta: Projeto_pokemon -> Modelos -> Modelos_para_se_basear
  
 ***
 
-***Dicionário de dados:***
+# ***Dicionário de dados:***
 
 O Dataset do pokémon é bem simples em relação ao seus dados, de acordo com as tabelas acima, temos as seguintes relações:
 
