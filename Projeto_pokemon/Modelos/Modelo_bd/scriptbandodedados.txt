@@ -1,51 +1,81 @@
------------------------------
-Script dos comandos MYSQL
+-------------------
+Criar um tema:
+-------------------
 
-Observação para criar as tabelas.
------------------------------
-CREATE SCHEMA pokemon_bd;
-USE pokemon_bd;
+CREATE SCHEMA pokemon_db;
+USE pokemon_db;
 
-CREATE TABLE Type1 (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    Type1 VARCHAR(9)
-);
+-------------------
+Selecionar a tabela importada do python, para testar:
+-------------------
 
-CREATE TABLE hp (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    HP INT
-);
+select * from tb_pokemon_stage;
 
-CREATE TABLE attack (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    attack INT
-);
-CREATE TABLE defense (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    defense INT
-);
-CREATE TABLE speed (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    speed INT
-);
-CREATE TABLE pokemon (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    Name VARCHAR(35),
-    Type1 INT,
-    hp INT,
-    attack INT,
-    defense INT,
-    speed INT,
-    FOREIGN KEY (Type1) REFERENCES Type1(ID),
-    FOREIGN KEY (attack) REFERENCES attack(ID),
-    FOREIGN KEY (hp) REFERENCES hp(ID),
-    FOREIGN KEY (defense) REFERENCES defense(ID),
-    FOREIGN KEY (speed) REFERENCES speed(ID)
-);
+-------------------
 
-select * from pokemon;
-select * from hp;
-select * from attack;
-select * from defense;
-select * from speed;
-select * from type1;
+Criar novas tabelas:
+
+-------------------
+
+
+CREATE TABLE IF NOT EXISTS `tb_pokemon` (
+  `Name` VARCHAR(35) NOT NULL,
+  `Hp` INT NOT NULL,
+  `Attack` INT NOT NULL,
+  `Defense` INT NOT NULL,
+  `Speed` INT NOT NULL,
+  PRIMARY KEY (`Name`))
+ENGINE = InnoDB;
+
+-------------------
+Para alterar o nome da tabela Type 1:
+-------------------
+
+ALTER TABLE `pokemon_db`.`tb_pokemon_stage` 
+CHANGE COLUMN `Type 1` `Type_1` TEXT NULL DEFAULT NULL ;
+
+Criar as novas tabelas:
+
+CREATE TABLE IF NOT EXISTS `tb_pokemon_type` (
+  `name_pokemon_type` VARCHAR(9) NOT NULL,
+  PRIMARY KEY (`name_pokemon_type`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `tb_pokemon_has_type` (
+  `Name` VARCHAR(35) NOT NULL,
+  `name_pokemon_type` VARCHAR(9) NOT NULL,
+  `tb_pokemon_has_typecol` TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`Name`, `name_pokemon_type`, `tb_pokemon_has_typecol`),
+  INDEX `fk_pokemon_type_idx` (`name_pokemon_type` ASC) VISIBLE,
+  CONSTRAINT `fk_pokemon`
+    FOREIGN KEY (`Name`)
+    REFERENCES `tb_pokemon` (`Name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_pokemon_type`
+    FOREIGN KEY (`name_pokemon_type`)
+    REFERENCES `tb_pokemon_type` (`name_pokemon_type`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+
+select * from tb_pokemon_type;
+
+-------------------
+Para inserir dados da tabela:
+-------------------
+
+INSERT INTO tb_pokemon (`Name`, `Hp`, `Attack`, `Defense`, `Speed`)
+SELECT `Name`, `HP`, `Attack`, `Defense`, `Speed`
+FROM tb_pokemon_stage;
+
+INSERT INTO tb_pokemon_type (`name_pokemon_type`)
+SELECT DISTINCT `Type_1`
+FROM tb_pokemon_stage;
+
+select * from tb_pokemon;
+
+select * from tb_pokemon_type;
+
+
+
